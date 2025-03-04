@@ -1,0 +1,129 @@
+:root {
+  --bemo-green: #96d1b3;
+  --bemo-green-dark: #1c4c3f;
+  --bemo-green-light: #c9e4c1;
+  --bemo-button-yellow: #f7e92d;
+  --bemo-button-red: #f02f6c;
+  --bemo-button-blue: #78cfde;
+  --bemo-button-purple: #313d9a;
+  --bemo-button-green: #74c042;
+  --bemo-text: #20260a;
+  --bemo-border: #013724;
+}
+* {
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+body {
+  background-color: var(--bemo-green-light);
+  color: var(--bemo-text);
+  height: 100vh;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  height: 100%;
+}
+
+.side-bar {
+  background-color: var(--bemo-green);
+  position: relative;
+  grid-row: span 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  border-right: 2px solid var(--bemo-border);
+}
+.side-bar .options {
+  display: flex;
+  flex-direction: column;
+}
+.side-bar .options > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.label {
+  position: absolute;
+  color: #001623;
+  transform: rotate(90deg);
+  font-size: 96px;
+  bottom: 80px;
+}
+.music,
+.home {
+  display: flex;
+  align-items: center;
+}
+.music p,
+.home p {
+  margin-right: 15px;
+}
+.bottom-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+  background-color: var(--bemo-green);
+  grid-column: span 6;
+  grid-row: 6/7;
+  border-top: 2px solid var(--bemo-border);
+}
+.title-block {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+}
+.title-screen {
+  background-color: var(--bemo-green-dark);
+  color: var(--bemo-green-light);
+  box-shadow: 4px -4px #0d281e;
+  display: inline-block;
+  height: auto;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--bemo-border);
+}
+.tool-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tool-bar {
+  display: flex;
+  align-items: center;
+}
+.tool-bar > div {
+  margin-left: 20px;
+}
+.tool-bar .prev,
+.tool-bar .next {
+  background-color: var(--bemo-button-purple);
+  padding: 5px 15px;
+  box-shadow: 3px -3px #101054;
+  border-radius: 15px;
+  border: 2px solid var(--bemo-border);
+}
+.tool-bar .prev:active,
+.tool-bar .next:active {
+  box-shadow: 1px -1px #991549;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+.tool-bar .play {
+  background-color: var(--bemo-button-red);
+  border-radius: 100%;
+  padding: 15px;
+  box-shadow: 3px -3px #991549;
+  border: 2px solid #7a113b;
+}
+
+.tool-bar .play:active {
+  box-shadow: 1px -1px #991549;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
