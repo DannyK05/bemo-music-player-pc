@@ -6,12 +6,13 @@
     <meta name="description" content="An example Electron app" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
     />
     <meta
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
+    <link rel="icon" type="image/jpeg" src="./assets/favicon.jpg" />
     <link rel="stylesheet" href="index.css" />
     <title>BMO</title>
   </head>
@@ -19,16 +20,16 @@
     <main>
       <nav class="side-bar">
         <div class="options">
-          <div class="home">
+          <a href="#" class="home">
             <img
               src="./assets/svgs/home.svg"
               width="20"
               height="20"
               alt="Home"
             />
-            <p>Home / Files</p>
-          </div>
-          <div class="music">
+            <p>Files</p>
+          </a>
+          <a href="#" class="music">
             <img
               src="./assets/svgs/musical-note.svg"
               width="20"
@@ -36,15 +37,20 @@
               alt="Music"
             />
             <p>Music</p>
-          </div>
+          </a>
         </div>
         <h1 class="label">BMO</h1>
       </nav>
-      <div class="main"></div>
+      <section class="main-container">
+        <div class=""><span>+</span> Add new source</div>
+      </section>
       <div class="bottom-bar">
         <div class="title-block">
           <p class="title-screen">Not Like Us by Kendrick Lamar</p>
         </div>
+        <audio id="audio-player">
+          <source src="" id="audio-source" type="audio/mpeg" />
+        </audio>
         <div class="tool-box">
           <div class="tool-bar">
             <div class="prev">

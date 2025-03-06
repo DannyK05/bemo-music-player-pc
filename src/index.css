@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Early GameBoy";
+  src: url("./assets/fonts/Early-GameBoy.ttf");
+}
+@font-face {
+  font-family: "Orbitron";
+  src: url("./assets/fonts/Orbitron-VariableFont_wght.ttf");
+}
 :root {
   --bemo-green: #96d1b3;
   --bemo-green-dark: #1c4c3f;
@@ -19,6 +27,7 @@ body {
   background-color: var(--bemo-green-light);
   color: var(--bemo-text);
   height: 100vh;
+  font-family: "Orbitron", Courier, monospace;
 }
 
 main {
@@ -42,11 +51,12 @@ main {
   display: flex;
   flex-direction: column;
 }
-.side-bar .options > div {
+.side-bar .options > a {
   display: flex;
   flex-direction: column;
+  color: inherit;
   align-items: center;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 .label {
   position: absolute;
@@ -54,6 +64,7 @@ main {
   transform: rotate(90deg);
   font-size: 96px;
   bottom: 80px;
+  font-family: "Early GameBoy", sans-serif;
 }
 .music,
 .home {
@@ -85,6 +96,7 @@ main {
   display: inline-block;
   height: auto;
   width: 100%;
+  font-family: "Early GameBoy", sans-serif;
   padding: 10px;
   border: 2px solid var(--bemo-border);
 }
@@ -126,4 +138,8 @@ main {
   box-shadow: 1px -1px #991549;
   transition: ease-in-out 0.1s;
   cursor: pointer;
+}
+
+.main-container {
+  font-family: "Early GameBoy", sans-serif;
 }
