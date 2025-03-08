@@ -3,10 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Music Player</title>
+    <title>BMO widget</title>
     <link rel="stylesheet" href="../styles/index.css" />
   </head>
-  <body>
-    <h1>Hello</h1>
+  <body class="widget">
+    <div class="widget__screen">
+      <div class="widget__eyes">
+        <span class="widget__eye widget__eye--left"></span>
+        <span class="widget__eye widget__eye--right"></span>
+      </div>
+    </div>
+    <div class="widget__song-screen-container">
+      <div class="widget__song-screen"></div>
+      <button
+        type="button"
+        title="enlarge button"
+        class="widget__button widget__button--enlarge"
+      ></button>
+    </div>
+    <div>
+      <button
+        type="button"
+        title="play button"
+        class="widget__button widget__button--play"
+      ></button>
+      <button
+        type="button"
+        title="expression button"
+        class="widget__button widget__button--exp1"
+      ></button>
+      <button
+        type="button"
+        title="expression button"
+        class="widget__button widget__button--exp2"
+      ></button>
+      <button
+        type="button"
+        title="expression button"
+        class="widget__button widget__button--exp3"
+      ></button
+      ><button
+        type="button"
+        title="expression button"
+        class="widget__button widget__button--exp4"
+      ></button>
+    </div>
   </body>
 </html>
