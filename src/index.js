@@ -22,7 +22,7 @@ function renderMusic() {
     .map((files) => `<div onclick="playMusic('${files}')">` + files + "</div>")
     .join(" ");
   console.log("Music Files Render", musicFilesRender);
-  const filesRender = `<div class="" onclick="selectMusicFolder()" ><span>+</span> Add new source</div> <div>${musicFilesRender}</div> `;
+  const filesRender = `<div class="files-render"><div class="add-source" onclick="selectMusicFolder()" ><span>+</span> Add new source</div> ${musicFilesRender}</div> `;
   content.innerHTML = filesRender;
 }
 
@@ -52,14 +52,16 @@ content.innerHTML = homeRender;
 playBtn.innerHTML = playIcon;
 
 function playPause() {
-  if (playing) {
-    audioPlayer.pause();
-    playing = false;
-    playBtn.innerHTML = playIcon;
-  } else {
-    audioPlayer.play();
-    playing = true;
-    playBtn.innerHTML = pauseIcon;
+  if (retrievedMusicFiles.length > 0) {
+    if (playing) {
+      audioPlayer.pause();
+      playing = false;
+      playBtn.innerHTML = playIcon;
+    } else {
+      audioPlayer.play();
+      playing = true;
+      playBtn.innerHTML = pauseIcon;
+    }
   }
 }
 

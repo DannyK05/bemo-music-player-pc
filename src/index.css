@@ -150,3 +150,64 @@ main {
   width: 100%;
   height: 100%;
 }
+.main-container .files-render {
+  display: flex;
+  width: 100%;
+  align-items: start;
+  flex-direction: column;
+}
+.main-container .files-render div {
+  border-bottom: 2px solid var(--bemo-border);
+  padding: 4px 2px;
+  width: 100%;
+}
+
+.main-container .files-render div:hover {
+  background-color: var(--bemo-border);
+  color: var(--bemo-green-light);
+  padding: 2px;
+}
+
+.main-container .files-render div:active {
+  color: var(--bemo-border);
+  background-color: var(--bemo-green-light);
+  padding: 2px;
+}
+.main-container .add-source {
+  background-color: var(--bemo-green-dark);
+  color: var(--bemo-green-light);
+  padding: 6px 2px;
+}
+.main-container.add-source:hover {
+  background-color: var(--bemo-green-dark);
+  color: var(--bemo-green-light);
+  padding: 6px 2px;
+}
+
+.main-container .add-source:active {
+  color: var(--bemo-green-dark);
+  background-color: var(--bemo-green-light);
+  padding: 6px 2px;
+}
+
+.extra-tools {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.extra-tools .widget-mode {
+  background-color: var(--bemo-button-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 4px;
+  border-radius: 100%;
+  box-shadow: 3px -3px #5e5810;
+  bottom: 2px solid var(--bemo-border);
+}
+.extra-tools .widget-mode:active {
+  box-shadow: 1px -1px #5e5810;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
