@@ -142,4 +142,11 @@ main {
 
 .main-container {
   font-family: "Early GameBoy", sans-serif;
+  grid-column: span 5;
+  grid-row: span 5;
+}
+
+.main-container .home-video {
+  width: 100%;
+  height: 100%;
 }
