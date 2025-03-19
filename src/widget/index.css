@@ -1,0 +1,162 @@
+@import url("../variables.css");
+
+.widget {
+  background-color: var(--bemo-green);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
+.widget__screen {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bemo-green-light);
+  width: 80%;
+  height: 45vh;
+}
+.widget__eyes {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.widget__eye {
+  /* margin-left: 60px; */
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: var(--bemo-text);
+}
+.widget__song-screen-container {
+  margin: 10px 0;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.widget__song-screen {
+  background-color: var(--bemo-green-dark);
+  color: var(--bemo-green-light);
+  box-shadow: 4px -4px #0d281e;
+  display: inline-block;
+  height: auto;
+  width: 60%;
+  font-family: "Early GameBoy", sans-serif;
+  padding: 10px;
+  border: 2px solid var(--bemo-border);
+}
+
+.widget__button {
+  border: 2px solid var(--bemo-border);
+}
+
+.widget__button--play {
+  background-color: var(--bemo-button-red);
+  border-radius: 100%;
+  padding: 15px;
+  box-shadow: 3px -3px #991549;
+  border: 2px solid #7a113b;
+}
+
+.widget__button--play:active {
+  box-shadow: 1px -1px #991549;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+
+.widget__button--play {
+  background-color: var(--bemo-button-red);
+  border-radius: 100%;
+  padding: 20px 15px;
+  box-shadow: 3px -3px #991549;
+  border: 2px solid #7a113b;
+}
+
+.widget__button--play:active {
+  box-shadow: 1px -1px #991549;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+.widget__button--prev,
+.widget__button--next {
+  background-color: var(--bemo-button-purple);
+  padding: 5px 15px;
+  box-shadow: 3px -3px #101054;
+  border-radius: 15px;
+  border: 2px solid var(--bemo-border);
+}
+
+.widget__button--prev:active,
+.widget__button--next:active {
+  box-shadow: 1px -1px #101054;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+
+.widget__button--exp1 {
+  background-color: var(--bemo-button-blue);
+  padding: 15px;
+  border-radius: 100%;
+  box-shadow: 3px -3px #153338;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+
+.widget__button--exp1:active {
+  box-shadow: 1px -1px #153338;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+
+.widget__button--exp2 {
+  background-color: var(--bemo-button-green);
+  padding: 15px;
+  border-radius: 100%;
+  box-shadow: 3px -3px #153338;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+
+.widget__button--exp2:active {
+  box-shadow: 1px -1px #375c20;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+
+.widget__button--enlarge {
+  background-color: var(--bemo-button-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 100%;
+  border: 2px solid var(--bemo-border);
+  box-shadow: 3px -3px #101054;
+}
+
+.widget__button--enlarge:active {
+  box-shadow: 1px -1px #101054;
+  transition: ease-in-out 0.1s;
+  cursor: pointer;
+}
+.widget__button__container {
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.prev_next_buttons {
+  display: flex;
+  align-items: center;
+}
+
+.prev_next_buttons > button {
+  margin-right: 20px;
+}
+
+.widget__button__container > .first_column {
+  display: flex;
+  align-items: center;
+}

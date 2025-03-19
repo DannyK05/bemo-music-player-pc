@@ -2,9 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy "
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BMO widget</title>
-    <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body class="widget">
     <div class="widget__screen">
@@ -15,38 +23,51 @@
     </div>
     <div class="widget__song-screen-container">
       <div class="widget__song-screen"></div>
-      <button
-        type="button"
-        title="enlarge button"
-        class="widget__button widget__button--enlarge"
-      ></button>
+
+      <a href="../index.html" class="widget__button widget__button--enlarge"
+        ><img
+          src="../assets/svgs/contract.svg"
+          width="20"
+          height="20"
+          alt="Player Mode"
+      /></a>
     </div>
-    <div>
-      <button
-        type="button"
-        title="play button"
-        class="widget__button widget__button--play"
-      ></button>
-      <button
-        type="button"
-        title="expression button"
-        class="widget__button widget__button--exp1"
-      ></button>
-      <button
-        type="button"
-        title="expression button"
-        class="widget__button widget__button--exp2"
-      ></button>
-      <button
-        type="button"
-        title="expression button"
-        class="widget__button widget__button--exp3"
-      ></button
-      ><button
-        type="button"
-        title="expression button"
-        class="widget__button widget__button--exp4"
-      ></button>
+    <div class="widget__button__container">
+      <div class="first_column">
+        <div class="prev_next_buttons">
+          <button
+            type="button"
+            title="expression button"
+            class="widget__button widget__button--prev"
+          ></button
+          ><button
+            type="button"
+            title="expression button"
+            class="widget__button widget__button--next"
+          ></button>
+        </div>
+      </div>
+      <div class="second_column">
+        <div>
+          <button
+            type="button"
+            title="expression button"
+            class="widget__button widget__button--exp1"
+          ></button>
+          <button
+            type="button"
+            title="expression button"
+            class="widget__button widget__button--exp2"
+          ></button>
+          <button
+            type="button"
+            title="play button"
+            class="widget__button widget__button--play play"
+          ></button>
+        </div>
+      </div>
     </div>
+    <script src="../index.js"></script>
+    <script src="./widget.js"></script>
   </body>
 </html>
