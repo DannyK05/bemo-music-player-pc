@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Early GameBoy";
+  src: url("./assets/fonts/Early-GameBoy.ttf");
+}
+@font-face {
+  font-family: "Orbitron";
+  src: url("./assets/fonts/Orbitron-VariableFont_wght.ttf");
+}
+:root {
+  --bemo-green: #96d1b3;
+  --bemo-green-dark: #1c4c3f;
+  --bemo-green-light: #c9e4c1;
+  --bemo-button-yellow: #f7e92d;
+  --bemo-button-red: #f02f6c;
+  --bemo-button-blue: #78cfde;
+  --bemo-button-purple: #313d9a;
+  --bemo-button-green: #74c042;
+  --bemo-text: #20260a;
+  --bemo-border: #013724;
+}
+* {
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}

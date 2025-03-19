@@ -78,7 +78,7 @@ function playMusic(filePath) {
   highlightCurentSong();
 }
 
-content.innerHTML = homeRender;
+content && (content.innerHTML = homeRender);
 playBtn.innerHTML = playIcon;
 displayScreen.textContent = currentSong;
 

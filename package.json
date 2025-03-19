@@ -1,11 +1,14 @@
 {
   "devDependencies": {
-    "electron": "^34.3.0"
+    "@electron-forge/cli": "^7.7.0",
+    "@electron-forge/maker-squirrel": "^7.7.0",
+    "electron": "^35.0.1",
+    "electron-squirrel-startup": "^1.0.1"
   },
   "name": "bemo-1.0",
   "version": "1.0.0",
-  "description": "\"A cool nostalgic adventure time music player\"",
-  "main": "main.js",
+  "description": "A cool nostalgic adventure time music player",
+  "main": "./main.js",
   "dependencies": {
     "boolean": "^3.2.0",
     "buffer-crc32": "^0.2.13",
@@ -67,8 +70,10 @@
     "yauzl": "^2.10.0"
   },
   "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron-forge start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "author": "",
   "license": "ISC"
