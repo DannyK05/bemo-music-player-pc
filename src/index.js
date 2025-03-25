@@ -6,12 +6,17 @@ const audioPlayer = document.querySelector("#audio-player");
 const content = document.querySelector(".main-container");
 const homeNav = document.querySelector(".home");
 const musicNav = document.querySelector(".music");
-let retrievedMusicFiles = [];
-let defaultPath = "";
-let playing = false;
-let songIndex = null;
+const widgetBtn = document.querySelector(".widget-mode");
+
+let retrievedMusicFiles =
+  JSON.parse(localStorage.getItem("retrievedMusicFiles")) || [];
+let defaultPath = localStorage.getItem("defaultPath") || "";
+let playing = JSON.parse(sessionStorage.getItem("playing")) || false;
 let prevSongIndex = null;
-let currentSong = "Hi";
+let currentSong = sessionStorage.getItem("currentSong") || "Hi";
+let songIndex =
+  currentSong !== "Hi" ? retrievedMusicFiles.indexOf(currentSong) : null;
+console.log(songIndex);
 const playIcon = ` <img src="./assets/svgs/play.svg" width="20" height="20" alt="Play"/>`;
 const pauseIcon = ` <img src="./assets/svgs/pause.svg" width="20" height="20" alt="Pause"/>`;
 
@@ -36,6 +41,10 @@ function renderMusic() {
   content.innerHTML = filesRender;
 }
 
+function storeCurrentSong(song) {
+  sessionStorage.setItem("currentSong", song);
+}
+
 async function selectMusicFolder() {
   const selectedFolder = await window.electronAPI.selectMusicFolder();
   if (!selectedFolder) {
@@ -45,17 +54,25 @@ async function selectMusicFolder() {
     const musicFiles = await window.electronAPI.getMusicFiles(selectedFolder);
     retrievedMusicFiles = musicFiles;
     defaultPath = selectedFolder.filePaths[0] + "/";
+    localStorage.setItem("defaultPath", defaultPath);
+    localStorage.setItem(
+      "retrievedMusicFiles",
+      JSON.stringify(retrievedMusicFiles)
+    );
     renderMusic();
   }
 }
 
 function highlightCurentSong() {
   const currentSongDiv = document.querySelector(`.song-${songIndex}`);
-  if (prevSongIndex !== null) {
+  console.log("Prev", prevSongIndex);
+  console.log("Current", songIndex);
+  if (prevSongIndex && prevSongIndex !== null) {
     const prevSongDiv = document.querySelector(`.song-${prevSongIndex}`);
     prevSongDiv.classList.remove("current-song");
   }
   currentSongDiv.classList.add("current-song");
+  storeCurrentSong(retrievedMusicFiles[songIndex]);
 }
 
 function playMusic(filePath) {
@@ -67,15 +84,22 @@ function playMusic(filePath) {
   if (songIndex == null) {
     prevSongIndex = songIndex;
   }
+  storeCurrentSong(filePath);
   audioPlayer.src = `${defaultPath + filePath}`;
   audioPlayer.play();
   displayScreen.textContent = `${retrievedMusicFiles[songIndex]}`;
   playBtn.innerHTML = pauseIcon;
   playing = true;
+  sessionStorage.setItem("playing", playing);
   audioPlayer.onended = () => {
     handleNextSong();
   };
   highlightCurentSong();
+}
+
+console.log(defaultPath);
+if (defaultPath !== "") {
+  renderMusic();
 }
 
 content && (content.innerHTML = homeRender);
@@ -84,15 +108,19 @@ displayScreen.textContent = currentSong;
 
 function playPause() {
   if (retrievedMusicFiles.length > 0) {
+    console.log("click");
     if (playing) {
       audioPlayer.pause();
       playing = false;
+      sessionStorage.setItem("playing", playing);
       playBtn.innerHTML = playIcon;
     } else {
       audioPlayer.play();
       playing = true;
+      sessionStorage.setItem("playing", playing);
       playBtn.innerHTML = pauseIcon;
     }
+    sessionStorage.setItem("playing", JSON.stringify(playing));
     audioPlayer.onended = () => {
       handleNextSong();
     };
@@ -111,6 +139,7 @@ function handlePrevSong() {
     audioPlayer.play();
     playBtn.innerHTML = pauseIcon;
     playing = true;
+    sessionStorage.setItem("playing", playing);
   } else {
     if (songIndex !== null) {
       prevSongIndex = songIndex;
@@ -120,6 +149,7 @@ function handlePrevSong() {
     audioPlayer.play();
     playBtn.innerHTML = pauseIcon;
     playing = true;
+    sessionStorage.setItem("playing", playing);
   }
   currentSong = retrievedMusicFiles[songIndex];
   displayScreen.textContent = currentSong;
@@ -138,6 +168,7 @@ function handleNextSong() {
     audioPlayer.play();
     playBtn.innerHTML = pauseIcon;
     playing = true;
+    sessionStorage.setItem("playing", playing);
   } else {
     if (songIndex !== null) {
       prevSongIndex = songIndex;
@@ -147,19 +178,31 @@ function handleNextSong() {
     audioPlayer.play();
     playBtn.innerHTML = pauseIcon;
     playing = true;
+    sessionStorage.setItem("playing", playing);
   }
   currentSong = retrievedMusicFiles[songIndex];
   displayScreen.textContent = currentSong;
   highlightCurentSong();
 }
 
-homeNav.addEventListener("click", () => {
-  renderHome();
-});
-
-musicNav.addEventListener("click", () => {
+if (playing) {
   renderMusic();
-});
+  audioPlayer.src = defaultPath + currentSong;
+  audioPlayer.currentTime = sessionStorage.getItem("currentTime");
+  audioPlayer.play();
+  playBtn.innerHTML = pauseIcon;
+  highlightCurentSong();
+}
+
+homeNav &&
+  homeNav.addEventListener("click", () => {
+    renderHome();
+  });
+
+musicNav &&
+  musicNav.addEventListener("click", () => {
+    renderMusic();
+  });
 
 playBtn.addEventListener("click", () => {
   playPause();
@@ -170,4 +213,7 @@ prevBtn.addEventListener("click", () => {
 });
 nextBtn.addEventListener("click", () => {
   handleNextSong();
+});
+widgetBtn.addEventListener("click", () => {
+  sessionStorage.setItem("currentTime", audioPlayer.currentTime + 0.2);
 });
