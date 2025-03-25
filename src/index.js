@@ -22,25 +22,6 @@ const pauseIcon = ` <img src="./assets/svgs/pause.svg" width="20" height="20" al
 
 const homeRender = `<img class="home-video" src="./assets/gifs/bmo-dancing.gif"/>`;
 
-function renderHome() {
-  content.innerHTML = homeRender;
-}
-function renderMusic() {
-  const musicFilesRender = retrievedMusicFiles
-    .map(
-      (files) =>
-        `<div class="song-${retrievedMusicFiles.indexOf(
-          files
-        )}" onclick="playMusic('${files}')">` +
-        files +
-        "</div>"
-    )
-    .join(" ");
-  console.log("Music Files Render", musicFilesRender);
-  const filesRender = `<div class="files-render"><div class="add-source" onclick="selectMusicFolder()" ><span>+</span> Add new source</div> ${musicFilesRender}</div> `;
-  content.innerHTML = filesRender;
-}
-
 function storeCurrentSong(song) {
   sessionStorage.setItem("currentSong", song);
 }
@@ -73,6 +54,25 @@ function highlightCurentSong() {
   }
   currentSongDiv.classList.add("current-song");
   storeCurrentSong(retrievedMusicFiles[songIndex]);
+}
+function renderHome() {
+  content.innerHTML = homeRender;
+}
+function renderMusic() {
+  const musicFilesRender = retrievedMusicFiles
+    .map(
+      (files) =>
+        `<div class="song-${retrievedMusicFiles.indexOf(
+          files
+        )}" onclick="playMusic('${files}')">` +
+        files +
+        "</div>"
+    )
+    .join(" ");
+  console.log("Music Files Render", musicFilesRender);
+  const filesRender = `<div class="files-render"><div class="add-source" onclick="selectMusicFolder()" ><span>+</span> Add new source</div> ${musicFilesRender}</div> `;
+  content.innerHTML = filesRender;
+  highlightCurentSong();
 }
 
 function playMusic(filePath) {
