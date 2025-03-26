@@ -8,6 +8,13 @@ const homeNav = document.querySelector(".home");
 const musicNav = document.querySelector(".music");
 const widgetBtn = document.querySelector(".widget-mode");
 
+function shortenDisplayText(text) {
+  if (text.length > 30) {
+    return text.slice(0, 30) + "...";
+  } else {
+    return text;
+  }
+}
 let retrievedMusicFiles =
   JSON.parse(localStorage.getItem("retrievedMusicFiles")) || [];
 let defaultPath = localStorage.getItem("defaultPath") || "";
@@ -16,7 +23,6 @@ let prevSongIndex = null;
 let currentSong = sessionStorage.getItem("currentSong") || "Hi";
 let songIndex =
   currentSong !== "Hi" ? retrievedMusicFiles.indexOf(currentSong) : null;
-console.log(songIndex);
 const playIcon = ` <img src="./assets/svgs/play.svg" width="20" height="20" alt="Play"/>`;
 const pauseIcon = ` <img src="./assets/svgs/pause.svg" width="20" height="20" alt="Pause"/>`;
 
@@ -31,7 +37,6 @@ async function selectMusicFolder() {
   if (!selectedFolder) {
     console.log("No folder seleted");
   } else {
-    console.log(selectedFolder);
     const musicFiles = await window.electronAPI.getMusicFiles(selectedFolder);
     retrievedMusicFiles = musicFiles;
     defaultPath = selectedFolder.filePaths[0] + "/";
@@ -46,8 +51,6 @@ async function selectMusicFolder() {
 
 function highlightCurentSong() {
   const currentSongDiv = document.querySelector(`.song-${songIndex}`);
-  console.log("Prev", prevSongIndex);
-  console.log("Current", songIndex);
   if (prevSongIndex && prevSongIndex !== null) {
     const prevSongDiv = document.querySelector(`.song-${prevSongIndex}`);
     prevSongDiv.classList.remove("current-song");
@@ -69,14 +72,13 @@ function renderMusic() {
         "</div>"
     )
     .join(" ");
-  console.log("Music Files Render", musicFilesRender);
+
   const filesRender = `<div class="files-render"><div class="add-source" onclick="selectMusicFolder()" ><span>+</span> Add new source</div> ${musicFilesRender}</div> `;
   content.innerHTML = filesRender;
   highlightCurentSong();
 }
 
 function playMusic(filePath) {
-  console.log(`${defaultPath + filePath}`);
   if (songIndex !== null) {
     prevSongIndex = songIndex;
   }
@@ -87,7 +89,9 @@ function playMusic(filePath) {
   storeCurrentSong(filePath);
   audioPlayer.src = `${defaultPath + filePath}`;
   audioPlayer.play();
-  displayScreen.textContent = `${retrievedMusicFiles[songIndex]}`;
+  displayScreen.textContent = shortenDisplayText(
+    `${retrievedMusicFiles[songIndex]}`
+  );
   playBtn.innerHTML = pauseIcon;
   playing = true;
   sessionStorage.setItem("playing", playing);
@@ -97,18 +101,12 @@ function playMusic(filePath) {
   highlightCurentSong();
 }
 
-console.log(defaultPath);
-if (defaultPath !== "") {
-  renderMusic();
-}
-
 content && (content.innerHTML = homeRender);
 playBtn.innerHTML = playIcon;
-displayScreen.textContent = currentSong;
+displayScreen.textContent = shortenDisplayText(currentSong);
 
 function playPause() {
   if (retrievedMusicFiles.length > 0) {
-    console.log("click");
     if (playing) {
       audioPlayer.pause();
       playing = false;
@@ -152,7 +150,7 @@ function handlePrevSong() {
     sessionStorage.setItem("playing", playing);
   }
   currentSong = retrievedMusicFiles[songIndex];
-  displayScreen.textContent = currentSong;
+  displayScreen.textContent = shortenDisplayText(currentSong);
   highlightCurentSong();
 }
 
@@ -181,7 +179,7 @@ function handleNextSong() {
     sessionStorage.setItem("playing", playing);
   }
   currentSong = retrievedMusicFiles[songIndex];
-  displayScreen.textContent = currentSong;
+  displayScreen.textContent = shortenDisplayText(currentSong);
   highlightCurentSong();
 }
 

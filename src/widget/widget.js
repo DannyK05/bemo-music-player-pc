@@ -8,7 +8,6 @@ const playerBtn = document.querySelector(".widget__button--enlarge");
 let currentSong = sessionStorage.getItem("currentSong") || "";
 const defaultPath = localStorage.getItem("defaultPath") || "";
 let playing = JSON.parse(sessionStorage.getItem("playing"));
-console.log(playing);
 if (currentSong !== "" && defaultPath !== "") {
   audioPlayer.src = defaultPath + currentSong;
   audioPlayer.currentTime =

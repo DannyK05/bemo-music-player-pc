@@ -71,8 +71,9 @@ main {
   color: var(--bemo-green-light);
   box-shadow: 4px -4px #0d281e;
   display: inline-block;
-  height: auto;
-  width: 100%;
+  font-size: 14px;
+  width: 33ch;
+  height: 66px;
   font-family: "Early GameBoy", sans-serif;
   padding: 10px;
   border: 2px solid var(--bemo-border);
@@ -135,6 +136,28 @@ main {
   flex-direction: column;
   overflow-y: auto;
 }
+.main-container .files-render::-webkit-scrollbar {
+  width: 18px;
+  background-color: var(--bemo-green-light);
+  border: 3px solid var(--bemo-border);
+}
+.main-container .files-render::-webkit-scrollbar-thumb {
+  width: 18px;
+  height: 50px;
+  background-color: var(--bemo-border);
+}
+.main-container .files-render::-webkit-scrollbar-button {
+  display: none;
+}
+/* .main-container
+  .files-render::-webkit-scrollbar-button:single-button:increment:single-button {
+  display: none;
+}
+.main-container
+  .files-render::-webkit-scrollbar-button:single-button:decrement:single-button {
+  display: none;
+} */
+
 .main-container .files-render div {
   border-bottom: 2px solid var(--bemo-border);
   padding: 4px 2px;
